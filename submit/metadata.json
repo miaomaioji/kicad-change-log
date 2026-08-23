@@ -1,0 +1,40 @@
+{
+  "$schema": "https://go.kicad.org/pcm/schemas/v1",
+  "name": "Change Log and Layer Diff",
+  "identifier": "com.github.miaomaioji.kicad-change-log",
+  "description": "Snapshot-based change log and layer diff visualization for PCB projects.",
+  "description_full": "Two windows inside the KiCad PCB editor:\n1) Change log window: per-reference change details such as 'X1 position (11, 23) -> (111, 2222)', with added/removed/modified attribute-level diffs, color coding and type filters.\n2) Visualization window (DRC / JLC DFM style): changes grouped by layer on the left; kicad-cli rendered layer comparison on the right (side-by-side / red-green overlay / slider), with click-to-locate on the real canvas.\n\nSnapshots are created automatically after saving the board (no Git required); manual snapshots are also supported.",
+  "type": "plugin",
+  "author": {
+    "name": "kicad-change-log contributors",
+    "contact": {
+      "web": "https://github.com/miaomaioji/kicad-change-log"
+    }
+  },
+  "maintainer": {
+    "name": "kicad-change-log contributors",
+    "contact": {
+      "web": "https://github.com/miaomaioji/kicad-change-log"
+    }
+  },
+  "license": "MIT",
+  "resources": {
+    "homepage": "https://github.com/miaomaioji/kicad-change-log"
+  },
+  "tags": [
+    "pcb",
+    "diff",
+    "log"
+  ],
+  "versions": [
+    {
+      "version": "1.1.0",
+      "status": "stable",
+      "kicad_version": "8.0",
+      "download_url": "https://github.com/miaomaioji/kicad-change-log/releases/download/v1.1.0/kicad_change_log_v1.1.0.zip",
+      "download_sha256": "add5c847eaadc685d03f5d09c97755ffc3d12bda4743f4b0500c63fb7fbe9eba",
+      "download_size": 35310,
+      "install_size": 107058
+    }
+  ]
+}

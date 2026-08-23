@@ -204,14 +204,21 @@ python install.py
 
 步骤:
 
-1. `python build_pcm.py` 生成 `dist/kicad_change_log_v1.1.0.zip` 与
-   `dist/metadata.json`(含 `download_sha256` / `download_size` /
-   `install_size`);
-2. 确认 zip 已上传到 GitHub Release(CI 自动完成),
-   保证 `download_url` 公开可访问;
-3. 向 <https://gitlab.com/kicad/addons/metadata> 提交 MR:
-   新建目录 `packages/com.github.miaomaioji.kicad-change-log/`,
-   放入 `dist/metadata.json`。
+1. 打 tag 触发 CI 发布 Release 后,CI 产出的 `metadata.json`
+   (含 `download_sha256` / `download_size` / `install_size`,与 Release zip
+   严格匹配)已固化在本仓库 `submit/metadata.json`;
+2. 一次性准备:安装 glab CLI 并登录 GitLab
+   (`glab auth login --hostname gitlab.com --device`,
+   浏览器打开 <https://gitlab.com/oauth/device> 输入代码授权);
+3. 运行一键脚本:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\submit_to_gitlab.ps1
+```
+
+脚本会 fork <https://gitlab.com/kicad/addons/metadata>,推送
+`packages/com.github.miaomaioji.kicad-change-log/metadata.json`,
+并创建合并请求(MR)。
 
 *The package metadata is in English, uses the reverse-DNS identifier
 `com.github.miaomaioji.kicad-change-log`, and is MIT licensed
