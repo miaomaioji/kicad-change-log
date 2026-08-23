@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 构建产物
+dist/
+*.zip
+
+# IDE / 编辑器
+.vscode/
+.idea/
+
+# 插件运行时数据
+snapshots/
+
+# 系统文件
+Thumbs.db
+Desktop.ini

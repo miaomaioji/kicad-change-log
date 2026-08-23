@@ -1,0 +1,9 @@
+{
+  "auto_snapshot": true,
+  "snapshot_dir_name": "snapshots",
+  "max_snapshots": 200,
+  "poll_interval_s": 2.0,
+  "kicad_cli_path": "",
+  "render_width": 1600,
+  "units_follow_board": true
+}
