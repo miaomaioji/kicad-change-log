@@ -5,6 +5,11 @@ __pycache__/
 .venv/
 venv/
 
+# 测试/覆盖率
+.pytest_cache/
+.coverage
+htmlcov/
+
 # 构建产物
 dist/
 *.zip
@@ -15,6 +20,9 @@ dist/
 
 # 插件运行时数据
 snapshots/
+
+# 日志
+*.log
 
 # 系统文件
 Thumbs.db

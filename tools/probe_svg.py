@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath(_PKG))
 
 import kcl_renderer as renderer
 
-CLI = r"C:\Program Files\KiCad\10.0\bin\kicad-cli.exe"
+CLI = renderer.find_kicad_cli("") or "kicad-cli"
 TMP = tempfile.mkdtemp(prefix="kcl_probe_")
 print("TMP:", TMP)
 

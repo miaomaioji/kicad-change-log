@@ -6,9 +6,14 @@ import subprocess
 import sys
 import tempfile
 
-import pcbnew
+_BASE = os.path.dirname(os.path.abspath(__file__))
+_PKG = os.path.join(_BASE, "..", "kicad_change_log")
+sys.path.insert(0, os.path.abspath(_PKG))
 
-CLI = r"C:\Program Files\KiCad\10.0\bin\kicad-cli.exe"
+import pcbnew
+import kcl_renderer as renderer
+
+CLI = renderer.find_kicad_cli("") or "kicad-cli"
 TMP = tempfile.mkdtemp(prefix="kcl_probe2_")
 print("TMP:", TMP)
 
