@@ -10,7 +10,7 @@ _BASE = os.path.dirname(os.path.abspath(__file__))
 _PKG = os.path.join(_BASE, "..", "kicad_change_log")
 sys.path.insert(0, os.path.abspath(_PKG))
 
-import renderer
+import kcl_renderer as renderer
 
 CLI = r"C:\Program Files\KiCad\10.0\bin\kicad-cli.exe"
 TMP = tempfile.mkdtemp(prefix="kcl_probe_")

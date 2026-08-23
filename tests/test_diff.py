@@ -12,10 +12,10 @@ _BASE = os.path.dirname(os.path.abspath(__file__))
 _PKG = os.path.join(_BASE, "..", "kicad_change_log")
 sys.path.insert(0, os.path.abspath(_PKG))
 
-import board_model
-import diff_engine
-import sexp
-import units
+import kcl_board_model as board_model
+import kcl_diff_engine as diff_engine
+import kcl_sexp as sexp
+import kcl_units as units
 
 
 def main():

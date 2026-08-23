@@ -132,15 +132,15 @@ python install.py
 | 现象 | 处理 |
 |---|---|
 | 提示「请先打开并保存一个 PCB 文件」 | 插件需要已保存的板文件路径 |
-| 渲染失败 / 未找到 kicad-cli | 在插件目录 `settings.json` 中设置 `kicad_cli_path` |
+| 渲染失败 / 未找到 kicad-cli | 在插件目录 `kcl_settings.json` 中设置 `kicad_cli_path` |
 | 保存后没有自动快照 | 确认 `auto_snapshot` 为 `true`,且内容确有变化 |
 | 板外或超 ±2147 mm 的元素不显示 | KiCad 内部 32 位坐标限制,属正常现象 |
 | 两个版本板框差异大 | 红绿叠加中未变元素位置一致但缩放略有差异(固有特性) |
 
 ## 配置 · Configuration
 
-编辑 `settings.json`(插件目录下):
-*Edit `settings.json` (in the plugin folder):*
+编辑 `kcl_settings.json`(插件目录下):
+*Edit `kcl_settings.json` (in the plugin folder):*
 
 | 键 | 说明 | 默认 |
 |---|---|---|
@@ -188,11 +188,34 @@ python install.py
 
 ## 发布 · Release
 
+### GitHub Releases
+
 1. 打 tag 并推送:`git tag v1.1.0 && git push origin v1.1.0`
-2. GitHub Actions 自动构建 PCM zip 并发布 Release;
-3. 将 Release 资产的下载链接填入 PCM 仓库(metadata 中 `download_url`
-   已按 `https://github.com/miaomaioji/kicad-change-log/releases/download/
-   v<版本>/kicad_change_log_v<版本>.zip` 生成)。
+2. GitHub Actions 自动构建 PCM zip 并发布 Release。
+
+### 提交 KiCad 官方插件仓库(可选)
+
+官方要求见 <https://dev-docs.kicad.org/zh-cn/addons/>,本项目已满足:
+
+- 打包结构:`plugins/` 平铺 + `resources/icon.png`(64x64)+ `metadata.json`;
+- 元数据全英文;`identifier` 为 `com.github.miaomaioji.kicad-change-log`
+  (逆序 DNS 命名);MIT 许可证与 GPL 兼容;
+- 源码托管于 GitHub,满足 issue 跟踪要求。
+
+步骤:
+
+1. `python build_pcm.py` 生成 `dist/kicad_change_log_v1.1.0.zip` 与
+   `dist/metadata.json`(含 `download_sha256` / `download_size` /
+   `install_size`);
+2. 确认 zip 已上传到 GitHub Release(CI 自动完成),
+   保证 `download_url` 公开可访问;
+3. 向 <https://gitlab.com/kicad/addons/metadata> 提交 MR:
+   新建目录 `packages/com.github.miaomaioji.kicad-change-log/`,
+   放入 `dist/metadata.json`。
+
+*The package metadata is in English, uses the reverse-DNS identifier
+`com.github.miaomaioji.kicad-change-log`, and is MIT licensed
+(GPL-compatible), meeting the official repository requirements.*
 
 ## 许可 · License
 

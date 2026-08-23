@@ -16,11 +16,11 @@ sys.path.insert(0, os.path.abspath(_PKG))
 
 import wx
 
-import board_model
-import config as config_mod
-import log_window
-import snapshot as snapshot_mod
-import visual_window
+import kcl_board_model as board_model
+import kcl_config as config_mod
+import kcl_log_window as log_window
+import kcl_snapshot as snapshot_mod
+import kcl_visual_window as visual_window
 
 
 def make_model_loader():

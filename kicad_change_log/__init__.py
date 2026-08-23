@@ -19,7 +19,9 @@ class ChangeLogPlugin(pcbnew.ActionPlugin):
                             "可视化每次改动(新增/删除/修改)")
         self.show_toolbar_button = True
         base_dir = os.path.dirname(os.path.abspath(__file__))
-        icon = os.path.join(base_dir, "icon.png")
+        icon = os.path.join(base_dir, "icon_24.png")
+        if not os.path.isfile(icon):
+            icon = os.path.join(base_dir, "icon.png")
         if not os.path.isfile(icon):
             icon = os.path.join(base_dir, "icon.svg")
         self.icon_file_name = icon
@@ -28,8 +30,8 @@ class ChangeLogPlugin(pcbnew.ActionPlugin):
         pkg_dir = os.path.dirname(os.path.abspath(__file__))
         if pkg_dir not in sys.path:
             sys.path.insert(0, pkg_dir)
-        import plugin
-        plugin.run()
+        import kcl_plugin
+        kcl_plugin.run()
 
 
 ChangeLogPlugin().register()

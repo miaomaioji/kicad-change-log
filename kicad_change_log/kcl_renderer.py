@@ -106,7 +106,7 @@ def _fill_token(path):
 def export_layer_svg(board_file, layer, out_svg, cli):
     """导出指定图层为 SVG(板区域模式、无图框)。"""
     if not cli:
-        raise RuntimeError("未找到 kicad-cli,请在 settings.json 中配置 kicad_cli_path")
+        raise RuntimeError("未找到 kicad-cli,请在 kcl_settings.json 中配置 kicad_cli_path")
     out_dir = os.path.dirname(out_svg)
     if out_dir:
         os.makedirs(out_dir, exist_ok=True)

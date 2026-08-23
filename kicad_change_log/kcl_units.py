@@ -8,7 +8,7 @@ _PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 if _PKG_DIR not in sys.path:
     sys.path.insert(0, _PKG_DIR)
 
-import diff_engine
+import kcl_diff_engine as diff_engine
 
 NM_PER_MM = 1000000.0
 NM_PER_MIL = 25400.0

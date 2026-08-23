@@ -8,7 +8,7 @@ _PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 if _PKG_DIR not in sys.path:
     sys.path.insert(0, _PKG_DIR)
 
-import board_model
+import kcl_board_model as board_model
 
 ADDED = "added"
 REMOVED = "removed"

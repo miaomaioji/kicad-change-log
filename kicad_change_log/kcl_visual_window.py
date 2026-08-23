@@ -16,15 +16,15 @@ if _PKG_DIR not in sys.path:
 
 import wx
 
-import board_model
-import config as config_mod
-import diff_engine
-import renderer
-import snapshot as snapshot_mod
-import units
+import kcl_board_model as board_model
+import kcl_config as config_mod
+import kcl_diff_engine as diff_engine
+import kcl_renderer as renderer
+import kcl_snapshot as snapshot_mod
+import kcl_units as units
 
 try:
-    import board_highlight
+    import kcl_board_highlight as board_highlight
 except Exception:  # noqa: BLE001
     board_highlight = None
 
@@ -540,7 +540,7 @@ class VisualWindow(wx.Frame):
             return
         self._set_status("渲染失败: %s" % message[:120])
         wx.MessageBox("图层渲染失败:\n%s\n\n请确认 kicad-cli 可用"
-                      "(settings.json 中 kicad_cli_path 可手动指定)。" % message,
+                      "(kcl_settings.json 中 kicad_cli_path 可手动指定)。" % message,
                       "变更可视化", wx.OK | wx.ICON_ERROR)
 
     def _on_mode(self):

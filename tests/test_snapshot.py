@@ -14,10 +14,10 @@ _BASE = os.path.dirname(os.path.abspath(__file__))
 _PKG = os.path.join(_BASE, "..", "kicad_change_log")
 sys.path.insert(0, os.path.abspath(_PKG))
 
-import board_model
-import config as config_mod
-import renderer
-import snapshot as snapshot_mod
+import kcl_board_model as board_model
+import kcl_config as config_mod
+import kcl_renderer as renderer
+import kcl_snapshot as snapshot_mod
 
 
 class FakeConfig:

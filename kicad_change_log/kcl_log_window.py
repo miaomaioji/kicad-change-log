@@ -15,14 +15,14 @@ if _PKG_DIR not in sys.path:
 
 import wx
 
-import board_model
-import config as config_mod
-import diff_engine
-import snapshot as snapshot_mod
-import units
+import kcl_board_model as board_model
+import kcl_config as config_mod
+import kcl_diff_engine as diff_engine
+import kcl_snapshot as snapshot_mod
+import kcl_units as units
 
 try:
-    import board_highlight
+    import kcl_board_highlight as board_highlight
 except Exception:  # noqa: BLE001
     board_highlight = None
 

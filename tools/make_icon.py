@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""生成插件图标 icon.png(纯标准库 PNG 编码,无需 PIL)。
+"""生成插件图标(纯标准库 PNG 编码,无需 PIL)。
+
+- icon.png:64x64,供 PCM 的 resources/ 使用
+- icon_24.png:24x24,供工具栏按钮使用
 
 用法:
     python tools/make_icon.py
@@ -58,6 +61,35 @@ def build_rows():
     return rows
 
 
+def build_rows_24():
+    """24x24 工具栏图标(64 版图案的简化缩放)。"""
+    rows = []
+    for py in range(24):
+        row = bytearray()
+        for px in range(24):
+            x, y = px + 0.5, py + 0.5
+            col = (0, 0, 0, 0)
+            if inside_round_rect(x, y, 1, 1, 22, 22, 5):
+                col = (42, 90, 223, 255)
+            if 5 <= x <= 14 and 6 <= y <= 18:
+                col = (255, 255, 255, 255)
+            if 12 <= x <= 14 and 6 <= y <= 7:
+                col = (200, 214, 245, 255)
+            if 7 <= x <= 11 and abs(y - 9) <= 0.5:
+                col = (122, 139, 184, 255)
+            if 7 <= x <= 11 and abs(y - 12) <= 0.5:
+                col = (122, 139, 184, 255)
+            g = (x - 17) ** 2 + (y - 14) ** 2
+            r = (x - 20) ** 2 + (y - 17) ** 2
+            if g <= 8:
+                col = (46, 204, 113, 255)
+            if r <= 8:
+                col = (231, 76, 60, 255)
+            row += bytes(col)
+        rows.append(bytes(row))
+    return rows
+
+
 def png_bytes(width, height, rgba_rows):
     def chunk(tag, data):
         out = struct.pack(">I", len(data)) + tag + data
@@ -73,11 +105,16 @@ def png_bytes(width, height, rgba_rows):
 
 
 def main():
-    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            "..", "kicad_change_log", "icon.png")
-    with open(out_path, "wb") as fh:
+    pkg = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                        "..", "kicad_change_log"))
+    out64 = os.path.join(pkg, "icon.png")
+    out24 = os.path.join(pkg, "icon_24.png")
+    with open(out64, "wb") as fh:
         fh.write(png_bytes(SIZE, SIZE, build_rows()))
-    print("已生成:", os.path.abspath(out_path))
+    with open(out24, "wb") as fh:
+        fh.write(png_bytes(24, 24, build_rows_24()))
+    print("已生成:", os.path.abspath(out64))
+    print("已生成:", os.path.abspath(out24))
 
 
 if __name__ == "__main__":

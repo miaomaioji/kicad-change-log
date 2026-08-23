@@ -8,11 +8,11 @@ _PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 if _PKG_DIR not in sys.path:
     sys.path.insert(0, _PKG_DIR)
 
-import board_model
-import config as config_mod
-import log_window
-import snapshot as snapshot_mod
-import visual_window
+import kcl_board_model as board_model
+import kcl_config as config_mod
+import kcl_log_window as log_window
+import kcl_snapshot as snapshot_mod
+import kcl_visual_window as visual_window
 
 _state = {
     "config": None,

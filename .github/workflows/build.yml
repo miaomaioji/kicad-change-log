@@ -35,12 +35,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pcm-package
-          path: dist/*.zip
+          path: |
+            dist/*.zip
+            dist/metadata.json
           if-no-files-found: error
 
       - name: Publish release (tags only)
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*.zip
+          files: |
+            dist/*.zip
+            dist/metadata.json
           generate_release_notes: true

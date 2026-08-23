@@ -31,7 +31,7 @@ def plugin_dir():
 
 class Config:
     def __init__(self, path=None):
-        self.path = path or os.path.join(plugin_dir(), "settings.json")
+        self.path = path or os.path.join(plugin_dir(), "kcl_settings.json")
         self.data = dict(_DEFAULTS)
         self.load()
 
